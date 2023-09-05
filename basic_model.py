@@ -70,3 +70,4 @@ y_preds_eval = xgModel.predict_proba(eval_data.drop(columns =["ROW_ID"]))[:, xgM
 submission_df = pd.DataFrame({"ROW_ID": eval_data["ROW_ID"], "conversion": y_preds_eval})
 submission_df["ROW_ID"] = submission_df["ROW_ID"].astype(int)
 submission_df.to_csv("./data/basic_model_xgboost.csv", sep=",", index=False)
+
