@@ -15,7 +15,7 @@ import xgboost as xgb
 from datetime import datetime
 
 
-random_state = 2211
+random_state = 256
 np.random.seed(random_state)
 
 # Load the competition data
@@ -75,22 +75,22 @@ comp_data['hour'] = comp_data['print_server_timestamp'].dt.hour
 comp_data.drop(columns=['print_server_timestamp'], inplace=True)
 
 
-##convertimos la columna tags
-unique_categories = comp_data['tags'].unique()
-for i in range(len(unique_categories)):
-    unique_categories[i] = str(unique_categories[i])
-    unique_categories[i] = unique_categories[i][1:]
-    unique_categories[i] = unique_categories[i][:-1]
-    print(unique_categories[i])
+# ##convertimos la columna tags
+# unique_categories = comp_data['tags'].unique()
+# for i in range(len(unique_categories)):
+#     unique_categories[i] = str(unique_categories[i])
+#     unique_categories[i] = unique_categories[i][1:]
+#     unique_categories[i] = unique_categories[i][:-1]
+#     print(unique_categories[i])
 
 
-encoder2 = OneHotEncoder(sparse=False)
-one_hot_encoded2 = encoder.fit_transform(comp_data[['tags']])
-one_hot_df2 = pd.DataFrame(one_hot_encoded2)
-one_hot_df2.columns = unique_categories
-comp_data = pd.concat([comp_data, one_hot_df2], axis=1)
-comp_data.drop(columns=['tags'], inplace=True)
-print(comp_data.head())
+# encoder2 = OneHotEncoder(sparse=False)
+# one_hot_encoded2 = encoder.fit_transform(comp_data[['tags']])
+# one_hot_df2 = pd.DataFrame(one_hot_encoded2)
+# one_hot_df2.columns = unique_categories
+# comp_data = pd.concat([comp_data, one_hot_df2], axis=1)
+# comp_data.drop(columns=['tags'], inplace=True)
+# print(comp_data.head())
 
 # unique_elements  = set()
 # for tag in comp_data['tags']:
